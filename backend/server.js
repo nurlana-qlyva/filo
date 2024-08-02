@@ -1,18 +1,9 @@
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
-const bodyParser = require("body-parser"); // Import body-parser
 
 const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-var whitelist = [
-  "http://localhost:5173",
-  "https://efilo.netlify.app",
-];
-var corsOptions = { origin: whitelist, credentials: true };
-app.use(cors(corsOptions));
+app.use(cors());
 
 const db = mysql.createConnection({
   host: "localhost",

@@ -4,12 +4,11 @@ function App() {
   const [data, setData] = useState([])
   
   useEffect(() => {
-    fetch('https://efilo.vercel.app/araclar')
+    fetch('http://localhost:8081/araclar')
     .then(res => res.json())
     .then(res => setData(res))
   })
 console.log(data)
-
   return (
     <>
       {data.map(item => item.plaka)}
