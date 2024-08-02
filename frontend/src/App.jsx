@@ -12,6 +12,7 @@ console.log(data)
   return (
     <>
       {data.map(item => item.plaka)}
+      hello
     </>
   )
 }
