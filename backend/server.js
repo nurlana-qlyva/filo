@@ -3,7 +3,16 @@ const mysql = require("mysql2");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+const cors = require("cors");
+var whitelist = [
+  "http://localhost:5173",
+  "https://efilo.netlify.app",
+];
+var corsOptions = { origin: whitelist, credentials: true };
+app.use(cors(corsOptions));
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -31,7 +40,7 @@ app.get("/araclar", (req, res) => {
       console.error("Error executing query:", err);
       return res.status(500).json({ error: "Internal server error" });
     }
-    console.log("Data retrieved:", data); 
+    console.log("Data retrieved:", data);
     return res.json(data);
   });
 });
