@@ -7,19 +7,16 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var whitelist = [
-  "http://localhost:5173",
-  "https://efilo.netlify.app",
-];
+var whitelist = ["http://localhost:5173", "https://efilo.netlify.app"];
 var corsOptions = { origin: whitelist, credentials: true };
 app.use(cors(corsOptions));
 
 const pool = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "0212",
-  database: "filo",
-  connectionLimit: 10, // Adjust the connection limit as needed
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  connectionLimit: 10,
 });
 
 app.get("/", (req, res) => {
