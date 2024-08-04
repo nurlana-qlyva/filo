@@ -4,7 +4,7 @@ function App() {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:8081/araclar')
+    fetch('https://efilo-nurlana-guluyevas-projects.vercel.app/araclar')
       .then(res => res.json())
       .then(res => setData(res))
   }, [])
