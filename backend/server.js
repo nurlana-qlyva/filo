@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mysql = require("mysql2");
 const express = require("express");
 const cors = require("cors");
@@ -18,6 +19,8 @@ const pool = mysql.createPool({
   database: process.env.DB_NAME,
   connectionLimit: 10,
 });
+
+console.log(process.env.DB_HOST)
 
 app.get("/", (req, res) => {
   return res.json("From backend side");
