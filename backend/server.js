@@ -1,23 +1,25 @@
-const express = require("express");
 const mysql = require("mysql2");
+const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const app = express();
-app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-const db = mysql.createConnection({
+var whitelist = [
+  "http://localhost:5173",
+  "https://efilo.netlify.app",
+];
+var corsOptions = { origin: whitelist, credentials: true };
+app.use(cors(corsOptions));
+
+const pool = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "0212",
   database: "filo",
-});
-
-db.connect((err) => {
-  if (err) {
-    console.error("Error connecting to the database:", err);
-    return;
-  }
-  console.log("Connected to the database.");
+  connectionLimit: 10, // Adjust the connection limit as needed
 });
 
 app.get("/", (req, res) => {
@@ -26,7 +28,7 @@ app.get("/", (req, res) => {
 
 app.get("/araclar", (req, res) => {
   const sql = "SELECT * FROM araclar";
-  db.query(sql, (err, data) => {
+  pool.query(sql, (err, data) => {
     if (err) {
       console.error("Error executing query:", err);
       return res.status(500).json({ error: "Internal server error" });
@@ -36,6 +38,6 @@ app.get("/araclar", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("Server is listening on port 3000");
+app.listen(8081, () => {
+  console.log("Server is listening on port 8081");
 });
