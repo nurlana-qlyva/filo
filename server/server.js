@@ -4,7 +4,11 @@ const app = express();
 const cors = require("cors");
 require('dotenv').config();
 
-app.use(cors());
+app.use(cors(
+  {
+    origin: 'https://filo-gamma.netlify.app'
+  }
+));
 const port = process.env.PORT || 3000;
 
 // MySQL connection

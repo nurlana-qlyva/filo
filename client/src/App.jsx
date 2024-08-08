@@ -8,8 +8,8 @@ function App() {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    const response = axios.get(`${import.meta.env.REACT_APP_API_URL}/araclar`);
-    console.log(response.data);
+    const response = axios.get(`http://localhost:3000/araclar`);
+    console.log(response);
   }, [])
 
   return (
