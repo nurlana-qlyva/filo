@@ -23,8 +23,12 @@ connection.connect((err) => {
   console.log("Connected to MySQL");
 });
 
+app.get("/", (req, res) => {
+  console.log('connected')
+});
+
 // Define a route to get data
-app.get("/api/araclar", (req, res) => {
+app.get("/araclar", (req, res) => {
   connection.query("SELECT * FROM araclar", (err, results) => {
     if (err) {
       res.status(500).send(err);
