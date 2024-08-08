@@ -2,9 +2,14 @@ const express = require("express");
 const mysql = require("mysql2");
 const app = express();
 const cors = require("cors");
-require('dotenv').config();
+require("dotenv").config();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://filo-tau.vercel.app", // replace with your frontend URL
+    optionsSuccessStatus: 200,
+  })
+);
 const port = process.env.PORT || 3000;
 
 // MySQL connection
@@ -24,7 +29,7 @@ connection.connect((err) => {
 });
 
 app.get("/", (req, res) => {
-  console.log('connected')
+  console.log("connected");
 });
 
 // Define a route to get data
