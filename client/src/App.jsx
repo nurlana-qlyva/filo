@@ -8,8 +8,8 @@ function App() {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    const response = axios.get(`http://localhost:3000/araclar`);
-    console.log(response);
+    const response = axios.get(`http://localhost:5000/api/v1/products`);
+    response.then(res => console.log(res.data))
   }, [])
 
   return (

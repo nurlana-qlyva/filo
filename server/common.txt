@@ -1,0 +1,4 @@
+docker run --name sqldb -d -p 3307:3306 --rm -v mysqldata:/var/lib/mysql -e MYSQL_ROOT_PASSWORD='test' mysql:latest c8faa077a8a34e16fe77f6f444deda772733bf67d3786adb834463a8a58c54b3
+
+
+in client package ==>   "proxy": "http://localhost:5000",
